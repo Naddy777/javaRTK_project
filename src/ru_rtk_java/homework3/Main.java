@@ -8,7 +8,7 @@ public class Main {
         String name = scanner.nextLine(); //Считываем введенную строку. String - это строка, nextLine - считываем строку.
         System.out.println("Привет, " + name +"! Рад Вас видеть!"); // Приветствуем пользователя
         Scanner scanner2 = new Scanner(System.in);
-        System.out.print("Введите число: ");// Просим пользователя ввести число
+        System.out.print("Введите число: ");// Пробуем работать с числами. Просим пользователя ввести число
         int number = scanner2.nextInt(); //Int - простое число, nextInt - считываем число.
         System.out.println("Ваше число: " + number +"! ");
 
