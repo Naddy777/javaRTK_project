@@ -1,4 +1,4 @@
-package ru_rtk_java.homework1;
+package ru_rtk_java.homework3;
 import java.util.Scanner;
 //позволяет считывать данные с клавиатуры
 public class Main {
