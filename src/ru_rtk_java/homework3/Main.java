@@ -9,7 +9,7 @@ public class Main {
         System.out.println("Привет, " + name +"! Рад Вас видеть!"); // Приветствуем пользователя
         Scanner scanner2 = new Scanner(System.in);
         System.out.print("Введите число: ");// Пробуем работать с числами. Просим пользователя ввести число
-        int number = scanner2.nextInt(); //Int - простое число, nextInt - считываем число.
+        int number = scanner2.nextInt(); //Int - простое число, nextInt - считываем число. Для каждого типа переенных есть свой метод для считывания
         System.out.println("Ваше число: " + number +"! ");
 
     }
