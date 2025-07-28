@@ -37,7 +37,7 @@ public class DZ5_3 {
                 result.append(" ");// мы добавляем в конце первого слова пробел (к результату добавить пробел)
             }
         }
-        System.out.println("Резльтат: " + result.toString());// для чего добавлен toString не понятно, без него тоже аботает
+        System.out.println("Резльтат: " + result.toString());// для чего добавлен toString не понятно, без него тоже работает
         //scanner.close();
     }
 }
