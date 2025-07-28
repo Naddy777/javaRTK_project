@@ -52,7 +52,4 @@ public class Telewisor {
 
         System.out.println("Вы создали телевизор: модель - " + model + ", частота обновления - " + refreshRate + ", функция smart - " + smartTV + ", цена = " + price);
     }
-
-
-
 }
