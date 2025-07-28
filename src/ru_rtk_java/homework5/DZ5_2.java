@@ -21,7 +21,7 @@ public class DZ5_2 {
         System.out.println("Длина строки: " + dlina);
         int count=0;
         for(int i=0;i<=dlina-5;i++){
-            String sub=cepochka.substring(i, i+5);
+            String sub=cepochka.substring(i, i+5);// здесь можно поменять параметры счетчика и двигать окно проверки на 1, а не на 5
             System.out.println("Проверяем позицию: " + i+ sub);
             if(sub.equals(">>-->")||sub.equals("<--<<")){
                 count++;
