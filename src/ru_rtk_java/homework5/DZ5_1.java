@@ -13,7 +13,7 @@ import java.util.Scanner;
 буквы, с учетом замкнутости клавиатуры
 
  */
-public class DZ5 {
+public class DZ5_1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); // Создаем объект Сканер
         System.out.println("Введите символ английского алфавита: ");
