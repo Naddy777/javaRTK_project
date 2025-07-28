@@ -1,7 +1,5 @@
 package ru_rtk_java.homework5;
-
 import java.util.Scanner;
-
 /*Задача 1. Для введенной с клавиатуры буквы английского алфавита
 нужно вывести слева стоящую букву на стандартной клавиатуре. При этом
 клавиатура замкнута, т.е. справа от буквы «p» стоит буква «a», а слева от "а"
@@ -11,7 +9,6 @@ import java.util.Scanner;
 маленькую букву английского алфавита.
 Выходные данные: следует вывести букву стоящую слева от заданной
 буквы, с учетом замкнутости клавиатуры
-
  */
 public class DZ5_1 {
     public static void main(String[] args) {
@@ -36,9 +33,5 @@ public class DZ5_1 {
             char leftSymbol=klaviatura.charAt(leftIndex);
             System.out.println("Буква слева на клавиатуре: " + leftSymbol);
         }
-
-
-
-//        System.out.println("Ваше число: ");
     }
 }

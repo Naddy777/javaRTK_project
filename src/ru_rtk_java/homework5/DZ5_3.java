@@ -1,8 +1,6 @@
 package ru_rtk_java.homework5;
-
 import java.util.Arrays;
 import java.util.Scanner;
-
 /*
 Задача 3*. Задана строка, состоящая из букв английского алфавита,
 разделенных одним пробелом. Необходимо каждую последовательность
