@@ -14,21 +14,22 @@ import java.util.Scanner;
  */
 public class DZ5_2 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in); // Создаем объект Сканер
-        System.out.println("Введите строку из символов: '<', '>' и '-': ");
-        String cepochka = scanner.nextLine();
+//        Scanner scanner = new Scanner(System.in); // Создаем объект Сканер
+//        System.out.println("Введите строку из символов: '<', '>' и '-': ");
+//        String cepochka = scanner.nextLine();// вводим цепочку символов из стрелок и тире
+        String cepochka = "<<<-->>--><>-<><><<>-->><<--<<<<-->-->>>-<><<<<-->>--><>-<><><<>-->><<--<<<<-->-->>>-<><<<<-->>--><>-<><>>";// делаем не через сканер
         int dlina=cepochka.length();
         System.out.println("Длина строки: " + dlina);
         int count=0;
-        for(int i=0;i<=dlina-5;i++){
-            String sub=cepochka.substring(i, i+5);// здесь можно поменять параметры счетчика и двигать окно проверки на 1, а не на 5
-            System.out.println("Проверяем позицию: " + i+ sub);
-            if(sub.equals(">>-->")||sub.equals("<--<<")){
+        for(int i=0;i<=dlina-5;i++){// (i<=dlina-5) это условие нужно, чтобы мы не вышли за конец диапазона (нашей длины стринга)
+            String sub=cepochka.substring(i, i+5);// substring() - метод выводит из стринга символы от первого индекса до второго заданного
+            System.out.println("Проверяем позицию: " + i+ sub);// в итоге проверяется позиция от каждого индекса
+            if(sub.equals(">>-->")||sub.equals("<--<<")){// || - это условие ИЛИ
                 count++;
                 System.out.println("Найдена стрелка! Количество: " + count);
             }
         }System.out.println("Всего стрелок: " + count);
-        scanner.close();
+        //scanner.close();// без этого  работает
 
 
     }

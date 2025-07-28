@@ -36,11 +36,11 @@ public class DZ5_3 {
             System.out.println("Отсортированное слово: " + sortedWord);
             result.append(sortedWord);
             if (i < words.length - 1) {
-                result.append(" ");// мы добавляем в конце нового слова пробел (к результату добавить пробел)
+                result.append(" ");// мы добавляем в конце первого слова пробел (к результату добавить пробел)
             }
         }
-        System.out.println("Резльтат: " + result.toString());
-        scanner.close();
+        System.out.println("Резльтат: " + result.toString());// для чего добавлен toString не понятно, без него тоже аботает
+        //scanner.close();
     }
 }
 

@@ -21,7 +21,7 @@ public class DZ5_1 {
         char letter= simvol.charAt(0);// берем из введенной строки первый символ
         System.out.println("Введенная буква: "+letter);
         String klaviatura="qwertyuiopasdfghjklzxcvbnm";
-        System.out.println("Длина абракадабры: " + klaviatura.length());
+       // System.out.println("Длина абракадабры: " + klaviatura.length());
         int index = klaviatura.indexOf(letter);// определяем индекс введенного символа  в стринге klaviatura
         System.out.println("Индекс введенной буквы: "+index);
         if (index ==-1){// вводим для того, чтобы отразить символ вне списка (работает по типу - надо вывести сообщение об ошибке, поэтому делаем проверку
