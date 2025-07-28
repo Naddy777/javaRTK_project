@@ -5,14 +5,17 @@ public class Telewisor {
     private int refreshRate;//Частота обновления: 60, 120
     private String smartTV; //Наличие смарт ТВ
     private int price;// цена телевизора
+    private boolean sostoyanie;// состояние: включен или выключен
 
 
-        public Telewisor (String model, int refreshRate, String smartTV, int price){
+        public Telewisor (String model, int refreshRate, String smartTV, int price ){
         this.model = model;
         this.price = price;
         this.refreshRate = refreshRate;
         this.smartTV = smartTV;
-    }
+        this.sostoyanie = false;// изначально телевизор выключен
+
+        }
 
     public String getModel() {
         return model;
@@ -50,6 +53,43 @@ public class Telewisor {
 
     public void SetTV(){
 
-        System.out.println("Вы создали телевизор: модель - " + model + ", частота обновления - " + refreshRate + ", функция smart - " + smartTV + ", цена = " + price);
+        System.out.println("Вы создали телевизор: модель - " + model + ", частота обновления - " + refreshRate + ", функция smart - " + smartTV + ", цена = " + price +", состояние - " + (sostoyanie ? "включен" : "выключен"));
     }
+
+    public void turnOn() {// метод для изменения состояния на включено
+        if (!sostoyanie) {//если не "sostoyanie" (имеется ввиду - если не false)
+            sostoyanie = true;
+            System.out.println(model + " - телевизор включен.");
+        } else {
+            System.out.println(model + " - телевизор уже включен.");
+        }
+        System.out.println("Телевизор: модель - " + model + " включен." );
+    }
+
+    public void turnOff() {// метод для изменения состояния на выключено
+
+        if (sostoyanie) {//если "sostoyanie"(имеется ввиду - если false)
+            sostoyanie = false;
+            System.out.println(model + " - телевизор выключен.");
+        } else {
+            System.out.println(model + " - телевизор уже выключен.");
+        }
+        System.out.println("Телевизор: модель - " + model + " выключен." );
+    }
+
+    public boolean isTurnOn() {//Получение текущего статуса телека
+        return sostoyanie;
+
+
+    }
+    public void Sostoyanie(){
+
+        System.out.println("На текущий момент состояние телевизора: модель - " + model + ", частота обновления - " + refreshRate + ", функция smart - " + smartTV + ", цена = " + price + (sostoyanie ? ", включен" : ", выключен"));
+    }
+    @Override
+    public String toString() {
+        return "\n"+"Модель: " + model + ", частота обновления: " + refreshRate + ", функция smart: " + smartTV + ", цена = " + price +
+                ", состояние: " + (sostoyanie ? " прибор включён" : " прибор выключен ") ;
+    }
+
 }
