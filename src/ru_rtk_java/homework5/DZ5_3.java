@@ -40,6 +40,7 @@ public class DZ5_3 {
         System.out.println("Резльтат: " + result.toString());// для чего добавлен toString не понятно, без него тоже работает
         //scanner.close();
     }
+
 }
 
 
