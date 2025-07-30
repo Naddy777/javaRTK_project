@@ -17,7 +17,12 @@ public class Person {
     }
 
     public void setName(String name) {
-        this.name = name;
+            if (name.length()>3) {
+                this.name = name;
+            } else {
+                System.out.println("Ошибка! Имя не может быть короче 3 символов!");
+            }
+
     }
 
     public float getMoney() {
@@ -25,7 +30,11 @@ public class Person {
     }
 
     public void setMoney(float money) {
-        this.money = money;
+            if (money >= 0) {
+                this.money = money;
+            } else {
+                System.out.println("Ошибка! Деньги не могут быть отрицательными!");
+            }
     }
 
     public String getProduct() {

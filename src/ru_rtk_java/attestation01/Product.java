@@ -13,7 +13,11 @@ public class Product {
     }
 
     public void setItem(String item) {
-        this.item = item;
+            if (item.length()>1) {
+                this.item = item;
+            } else {
+                System.out.println("Ошибка! Название продукта не может быть 1 символ!");
+            }
     }
 
     public float getPrice() {
@@ -21,7 +25,11 @@ public class Product {
     }
 
     public void setPrice(float price) {
-        this.price = price;
+            if (price >= 0) {
+                this.price = price;
+            } else {
+                System.out.println("Ошибка! Деньги не могут быть отрицательными!");
+            }
     }
 
 }
