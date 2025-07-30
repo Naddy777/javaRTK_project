@@ -34,7 +34,8 @@ public class Telewisor {
     }
 
     public String isSmartTV() {
-        return smartTV;
+
+            return smartTV;
     }
 
     public void setSmartTV(String smartTV) {
@@ -59,7 +60,7 @@ public class Telewisor {
     public void turnOn() {// метод для изменения состояния на включено
         if (!sostoyanie) {//если не "sostoyanie" (имеется ввиду - если не false)
             sostoyanie = true;
-            System.out.println(model + " - телевизор включен.");
+            System.out.println(model + " - вкл ");
         } else {
             System.out.println(model + " - телевизор уже включен.");
         }
@@ -84,11 +85,11 @@ public class Telewisor {
     }
     public void Sostoyanie(){
 
-        System.out.println("На текущий момент состояние телевизора: модель - " + model + ", частота обновления - " + refreshRate + ", функция smart - " + smartTV + ", цена = " + price + (sostoyanie ? ", включен" : ", выключен"));
+        System.out.println("На текущий момент телевизор " +(sostoyanie ? " включен" : ", выключен")+ " (параметры: модель - " + model + ", частота обновления - " + refreshRate + ", функция smart - " + smartTV + ", цена = " + price + ")");
     }
     @Override
     public String toString() {
-        return "\n"+"Модель: " + model + ", частота обновления: " + refreshRate + ", функция smart: " + smartTV + ", цена = " + price +
+        return "\n" + "Модель: " + model + ", частота обновления: " + refreshRate + ", функция smart: " + smartTV + ", цена = " + price +
                 ", состояние: " + (sostoyanie ? " прибор включён" : " прибор выключен ") ;
     }
 
