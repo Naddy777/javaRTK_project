@@ -53,8 +53,8 @@ public class App {
             int indexspisokSmartTV = random.nextInt(spisokSmartTV.length);
             int randprice =random.nextInt(200_000);
 
-            telewisor[3] = new Telewisor(spisokModels[indexModel],  spisokRefreshRate[indexRefreshRate], spisokSmartTV[indexspisokSmartTV], randprice);
-            telewisor[3].SetTV();
+            telewisor[6] = new Telewisor(spisokModels[indexModel],  spisokRefreshRate[indexRefreshRate], spisokSmartTV[indexspisokSmartTV], randprice);
+            telewisor[6].SetTV();
         }else{
             System.out.println("Ваш ответ не понятен.");
         }
@@ -65,7 +65,7 @@ public class App {
 
         System.out.println("Выводим на печать выборочные объекты моделей телевизоров:" + telewisor[0] +  telewisor[1] + "\n");
         System.out.println("Выводим на печать все созданные модели телевизоров: " + Arrays.toString(telewisor));
-        System.out.println("\n Перечень моделей телевизоров в списке: ");// выводим только перечень моделей созданных телевизоров
+        System.out.println("\nПеречень моделей телевизоров в списке: ");// выводим только перечень моделей созданных телевизоров
                 for(i=0;i<telewisor.length; i++ ) {
                     if (telewisor[i] == null)
                     {i=i;}else{
