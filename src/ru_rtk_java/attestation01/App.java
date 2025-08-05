@@ -31,6 +31,7 @@ public class App {
 
         Person[] persons = new Person[10];
         Product[] products = new Product[10];
+
         System.out.println("Вводим покупателей через сканер.");
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите имя всех покупателей через ; и сумму денег через = : ");// на ввод пойдет Павел Андреевич = 10000; Анна Петровна = 2000; Борис = 10
@@ -85,6 +86,43 @@ public class App {
                 }
         }
         System.out.println("Выводим на печать все занесенные в базу продукты и их цены: " + Arrays.toString(products));
+        System.out.println();
+        System.out.println("Вводим покупки наших покупателей через сканер.");
+        Scanner scanner2 = new Scanner(System.in);
+        System.out.print("Введите, что купил покупатель через тире (имя покупатель - продукт). По завершении ввода поставьте END");//  на ввод пойдет: Павел Андреевич - Хлеб
+//        Павел Андреевич - Масло
+//        Анна Петровна - Кофе растворимый
+//        Анна Петровна - Молоко
+//        Анна Петровна - Молоко
+//        Анна Петровна - Молоко
+//        Анна Петровна - Торт
+//        Борис - Торт
+//        Павел Андреевич - Торт
+//        END
+        String pokupka = scanner2.nextLine();
+        String[] personPokupka = pokupka.trim().split("-");
+        String pokupatelName = personPokupka[0].trim();
+        String productName = personPokupka[1].trim();
+        int l, m;
+        for (l = 0; l < persons.length; l++) {
+            if(persons[l] != null) {
+                if (pokupatelName.equals(persons[l].getName())) {
+                    System.out.println("Наш покупатель: " + pokupatelName + "\n");
+                    for (m = 0; m < products.length; m++) {
+                        if(products[m] != null) {
+                            if (productName.equals(products[m].getItem())) {
+                                System.out.println("Продукт " + productName + " есть в наличии." + "\n");
+                            } else {
+                                System.out.println("Продукт " + productName + " отсутствует в списке." + "\n");
+                            }
+                        }
+                    }
+                } else {
+                    System.out.println("Покупатель" + pokupatelName + " отсутствует в списке покупателей" + "\n");
+                }
+            }
+            }
+        }
+
     }
 
-}
