@@ -39,58 +39,60 @@ public class App {
         String personsSum = scanner.nextLine();// на ввод пойдет ПH = 10000; Анна Петровна = -2000; Борис = 10
         String[] personSum = personsSum.split(";");
 //        System.out.println("Наш список покупателей и их корзина в рублях: " + Arrays.toString(personSum));
-        int i=0;
+        int i = 0;
 
-            for (String per : personSum) {
-                String[] massiv = per.trim().split("=");
-                String name = massiv[0].trim();
-                if(name.length()<3) {
-                    System.out.println("Имя не может быть короче 3 символов! Данные по покупателю " + name + " не занесены!" + "\n");
-                }else {
-                    double money = Double.parseDouble(massiv[1].trim());
-                    if(money<0) {
-                        System.out.println("Деньги не могут быть отрицательным числом! Данные по покупателю " + name + " не занесены!" + "\n");
-                    }else {
+        for (String per : personSum) {
+            String[] massiv = per.trim().split("=");
+            String name = massiv[0].trim();
+            if (name.length() < 3) {
+                System.out.println("Имя не может быть короче 3 символов! Данные по покупателю " + name + " не занесены!" + "\n");
+            } else {
+                double money = Double.parseDouble(massiv[1].trim());
+                if (money < 0) {
+                    System.out.println("Деньги не могут быть отрицательным числом! Данные по покупателю " + name + " не занесены!" + "\n");
+                } else {
                     persons[i] = new Person(name, money);
 //                    System.out.println("Покупатель: " + name + ". Сумма денег у покупателя: " + money);
 //                    System.out.println();
 //                    persons[i].setName(name);
 //                    persons[i].setMoney(money);
                     i++;
-                    }
                 }
-
             }
-        System.out.println("Выводим на печать всех занесенных в базу покупателей и их баланс: " + Arrays.toString(persons));
+
+        }
+//        System.out.println("Выводим на печать всех занесенных в базу покупателей и их баланс: " + Arrays.toString(persons));
         System.out.println();
         System.out.println("Вводим продукты через сканер.");
         Scanner scannerP = new Scanner(System.in);
-        System.out.print("Введите перечень продуктов через ; разделитель = : ");// на ввод пойдет Хлеб = 40; Молоко = 60; Торт = 1000; Кофе растворимый = 879; Масло = 150
+        System.out.print("Введите перечень продуктов и их цену через ; разделитель = : ");// на ввод пойдет Хлеб = 40; Молоко = 60; Торт = 1000; Кофе растворимый = 879; Масло = 150
         String productsSum = scannerP.nextLine();// на ввод пойдет
         String[] productSum = productsSum.split(";");
-        int j=0;
-            for (String prod : productSum) {
-                String[] massivP = prod.trim().split("=");
-                String item = massivP[0].trim();
-                if(item.length()<1) {
-                    System.out.println("Название продукта не может быть пустым! Данные по продукту не занесены!" + "\n");
-                }else {
-                    float price = Float.parseFloat(massivP[1].trim());
-                    if(price<0) {
-                        System.out.println("Деньги не могут быть отрицательным числом! Данные по цене продукта " + item + " не занесены!" + "\n");
-                    }else {
-                        products[j] = new Product(item, price);
+        int j = 0;
+        for (String prod : productSum) {
+            String[] massivP = prod.trim().split("=");
+            String item = massivP[0].trim();
+            if (item.length() < 1) {
+                System.out.println("Название продукта не может быть пустым! Данные по продукту не занесены!" + "\n");
+            } else {
+                float price = Float.parseFloat(massivP[1].trim());
+                if (price < 0) {
+                    System.out.println("Деньги не могут быть отрицательным числом! Данные по цене продукта " + item + " не занесены!" + "\n");
+                } else {
+                    products[j] = new Product(item, price);
 //                        System.out.println("Продукты: ");
 //                        System.out.println(item + ". Цена: " + price + " рублей.");
-                        j++;
-                    }
+                    j++;
                 }
+            }
         }
-        System.out.println("Выводим на печать все занесенные в базу продукты и их цены: " + Arrays.toString(products));
+//        System.out.println("Выводим на печать все занесенные в базу продукты и их цены: " + Arrays.toString(products));
         System.out.println();
         System.out.println("Вводим покупки наших покупателей через сканер.");
         Scanner scanner2 = new Scanner(System.in);
-        System.out.print("Введите, что купил покупатель через тире (имя покупатель - продукт). По завершении ввода поставьте END");//  на ввод пойдет: Павел Андреевич - Хлеб
+        System.out.print("Введите, что купил покупатель в формате: имя покупателя - продукт. По завершении ввода поставьте END: ");
+        while (scanner2.hasNext()) {
+            //  на ввод пойдет: Павел Андреевич - Хлеб
 //        Павел Андреевич - Масло
 //        Анна Петровна - Кофе растворимый
 //        Анна Петровна - Молоко
@@ -100,44 +102,51 @@ public class App {
 //        Борис - Торт
 //        Павел Андреевич - Торт
 //        END
-        String pokupka = scanner2.nextLine();
-        String[] personPokupka = pokupka.trim().split("-");
-        String pokupatelName = personPokupka[0].trim();
-        String productName = personPokupka[1].trim();
-        int l, m;
-        int k=0;
-        for (l = 0; l < persons.length; l++) {
-            if(persons[l] != null) {
-                if (pokupatelName.equals(persons[l].getName())) {
-                    System.out.println("Наш покупатель: " + pokupatelName + "\n");
-                    for (m = 0; m < products.length; m++) {
-                        if(products[m] != null) {
-                            if (productName.equals(products[m].getItem())) {
-                                System.out.println("Продукт " + productName + " есть в наличии." + "\n");
-                               if (persons[l].getMoney() >= products[m].getPrice()) {
-                                   System.out.println(pokupatelName + " купил/купила " + productName + "\n");
-                                   System.out.println(persons[l].getName() + " купил/купила " + products[m].getItem() + "\n");// тоже самое
-                                   persons[l].setMoney(persons[l].getMoney() - products[m].getPrice());
+            String pokupka = scanner2.nextLine();
+            if (pokupka.equals("END")) {
+                System.out.println("Ввод завершен.");
+                break;
+            } else {
+                String[] personPokupka = pokupka.trim().split("-");
+                String pokupatelName = personPokupka[0].trim();
+                String productName = personPokupka[1].trim();
+                int l, m;
+//
+                for (l = 0; l < persons.length; l++) {
+                    if (persons[l] != null) {
+                        if (pokupatelName.equals(persons[l].getName())) {
+//                            System.out.println("Наш покупатель: " + pokupatelName + "\n");
+                            for (m = 0; m < products.length; m++) {
+                                if (products[m] != null) {
+                                    if (productName.equals(products[m].getItem())) {
+                                        System.out.println("Продукт " + productName + " есть в наличии.");
+                                        if (persons[l].getMoney() >= products[m].getPrice()) {
+                                            System.out.println(pokupatelName + " купил/купила " + productName);
+//                                            System.out.println(persons[l].getName() + " купил/купила " + products[m].getItem() + "\n");// тоже самое
+                                            persons[l].setMoney(persons[l].getMoney() - products[m].getPrice());
+                                            persons[l].addProduct(products[m]);
+                                            System.out.println("Теперь у " + persons[l].getName() + " осталось " + persons[l].getMoney() + " рублей. " + "\n");
+                                        } else {
+                                            System.out.println(pokupatelName + " не может себе позволить " + productName + "\n");
+                                        }
 
-                                   ArrayList<String> pokupki = new ArrayList<String>();
-                                   pokupki.add(k, productName);
-                                   k++;
-                                   System.out.println("Теперь у " + pokupatelName + " осталось " + persons[l].getMoney() + " рублей. Куплено " + k + "товаров. " + "\n");
-                               }else {
-                                   System.out.println(pokupatelName + " не может себе позволить " + productName + "\n");
-                               }
-
-                            } else {
-                                System.out.println("Продукт " + productName + " отсутствует в списке." + "\n");
+                                    }
+//                                        System.out.println("Продукт " + productName + " отсутствует в списке." + "\n");
+                                }
                             }
                         }
+//                            System.out.println("Покупатель" + pokupatelName + " отсутствует в списке покупателей" + "\n");
                     }
-                } else {
-                    System.out.println("Покупатель" + pokupatelName + " отсутствует в списке покупателей" + "\n");
                 }
             }
-            }
+        }
+        System.out.println("Наши покупатели купили: " + Arrays.toString(persons));
+        int k;
+        for(k=0;k<persons.length; k++ ) {
+            if (persons[k] != null) {
+            persons[k].toString();}
         }
 
+    }
     }
 

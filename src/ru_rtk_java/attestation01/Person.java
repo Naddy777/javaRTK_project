@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Person {
     private String name;
     private double money;
-//    private String product;
+    private ArrayList<Product> products = new ArrayList<>();
 
         public Person (String name, double money) {
             this.name = name;
@@ -38,10 +38,18 @@ public class Person {
                 System.out.println("Ошибка! Деньги не могут быть отрицательными!");
             }
     }
-//    public ArrayList<Product> getProducts()
-//    {
-//        return products;
-//    }
+    public ArrayList<Product> getProducts()
+    {
+        return products;
+    }
+    public void addProduct(Product p)
+    {
+        products.add(p);
+    }
+    public void korzina(){
+
+        System.out.println( name + " - " + getProducts());
+    }
 
 //    public String getProduct() {
 //
@@ -54,5 +62,5 @@ public class Person {
 
     @Override
     public String toString() {
-        return "\n" + name + ": " + money + " рублей"/*+ product*/;}
+        return "\n" + name + " - " + products;}
 }
