@@ -24,6 +24,7 @@ package ru_rtk_java.attestation01;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
@@ -49,8 +50,8 @@ public class App {
                         System.out.println("Деньги не могут быть отрицательным числом! Данные по покупателю " + name + " не занесены!" + "\n");
                     }else {
                     persons[i] = new Person(name, money);
-                    System.out.println("Покупатель: " + name + ". Сумма денег у покупателя: " + money);
-                    System.out.println();
+//                    System.out.println("Покупатель: " + name + ". Сумма денег у покупателя: " + money);
+//                    System.out.println();
 //                    persons[i].setName(name);
 //                    persons[i].setMoney(money);
                     i++;
@@ -59,5 +60,31 @@ public class App {
 
             }
         System.out.println("Выводим на печать всех занесенных в базу покупателей и их баланс: " + Arrays.toString(persons));
+        System.out.println();
+        System.out.println("Вводим продукты через сканер.");
+        Scanner scannerP = new Scanner(System.in);
+        System.out.print("Введите перечень продуктов через ; разделитель = : ");// на ввод пойдет Хлеб = 40; Молоко = 60; Торт = 1000; Кофе растворимый = 879; Масло = 150
+        String productsSum = scannerP.nextLine();// на ввод пойдет
+        String[] productSum = productsSum.split(";");
+        int j=0;
+            for (String prod : productSum) {
+                String[] massivP = prod.trim().split("=");
+                String item = massivP[0].trim();
+                if(item.length()<1) {
+                    System.out.println("Название продукта не может быть пустым! Данные по продукту не занесены!" + "\n");
+                }else {
+                    float price = Float.parseFloat(massivP[1].trim());
+                    if(price<0) {
+                        System.out.println("Деньги не могут быть отрицательным числом! Данные по цене продукта " + item + " не занесены!" + "\n");
+                    }else {
+                        products[j] = new Product(item, price);
+//                        System.out.println("Продукты: ");
+//                        System.out.println(item + ". Цена: " + price + " рублей.");
+                        j++;
+                    }
+                }
+        }
+        System.out.println("Выводим на печать все занесенные в базу продукты и их цены: " + Arrays.toString(products));
     }
+
 }
