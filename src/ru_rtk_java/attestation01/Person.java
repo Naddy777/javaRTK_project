@@ -1,15 +1,17 @@
 package ru_rtk_java.attestation01;
 
+import java.util.ArrayList;
+
 public class Person {
     private String name;
-    private float money;
-    private String product;
-    private boolean sostoyanie;
-        public Person (String name, float money, String product) {
+    private double money;
+//    private String product;
+
+        public Person (String name, double money) {
             this.name = name;
             this.money = money;
-            this.product = product;
-            this.sostoyanie = true;
+//            this.product = product;
+
         }
 
     public String getName() {
@@ -25,28 +27,32 @@ public class Person {
 
     }
 
-    public float getMoney() {
+    public double getMoney() {
         return money;
     }
 
-    public void setMoney(float money) {
+    public void setMoney(double money) {
             if (money >= 0) {
                 this.money = money;
             } else {
                 System.out.println("Ошибка! Деньги не могут быть отрицательными!");
             }
     }
+//    public ArrayList<Product> getProducts()
+//    {
+//        return products;
+//    }
 
-    public String getProduct() {
-            
-        return product;
-    }
+//    public String getProduct() {
+//
+//        return product;
+//    }
+//
+//    public void setProduct(String product) {
+//        this.product = product;
+//    }
 
-    public void setProduct(String product) {
-        this.product = product;
-    }
     @Override
     public String toString() {
-        return "\n" + "Имя покупателя: " + name + ", сумма денег в кошельке: " + money + ", пакет продуктов: " + product + ", платежеспособность: " + (sostoyanie ? " платежеспособен" : " неплатежеспособен ") ;
-    }
+        return "\n" + name + ": " + money + " рублей"/*+ product*/;}
 }
