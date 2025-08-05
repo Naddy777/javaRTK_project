@@ -33,20 +33,31 @@ public class App {
         System.out.println("Вводим покупателей через сканер.");
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите имя всех покупателей через ; и сумму денег через = : ");// на ввод пойдет Павел Андреевич = 10000; Анна Петровна = 2000; Борис = 10
-        String personsSum = scanner.nextLine();
+        String personsSum = scanner.nextLine();// на ввод пойдет ПH = 10000; Анна Петровна = -2000; Борис = 10
         String[] personSum = personsSum.split(";");
-        System.out.println("Наш список покупателей и их корзина в рублях: " + Arrays.toString(personSum));
+//        System.out.println("Наш список покупателей и их корзина в рублях: " + Arrays.toString(personSum));
         int i=0;
-        System.out.println("После сплита по = ");
-        for (String per : personSum) {
-            String[] massiv = per.trim().split("=");
-            String name = massiv[0];
-            double money =  Double.parseDouble(massiv[1].trim());
-            System.out.println("Покупатель: " + name + ". Сумма денег у покупателя: " + money);
-            persons[i] = new Person (name, money);
-            i++;
 
-        }
-        System.out.println("Выводим на печать всех покупателей и их корзину: " + Arrays.toString(persons));
+            for (String per : personSum) {
+                String[] massiv = per.trim().split("=");
+                String name = massiv[0].trim();
+                if(name.length()<3) {
+                    System.out.println("Имя не может быть короче 3 символов! Данные по покупателю " + name + " не занесены!" + "\n");
+                }else {
+                    double money = Double.parseDouble(massiv[1].trim());
+                    if(money<0) {
+                        System.out.println("Деньги не могут быть отрицательным числом! Данные по покупателю " + name + " не занесены!" + "\n");
+                    }else {
+                    persons[i] = new Person(name, money);
+                    System.out.println("Покупатель: " + name + ". Сумма денег у покупателя: " + money);
+                    System.out.println();
+//                    persons[i].setName(name);
+//                    persons[i].setMoney(money);
+                    i++;
+                    }
+                }
+
+            }
+        System.out.println("Выводим на печать всех занесенных в базу покупателей и их баланс: " + Arrays.toString(persons));
     }
 }
