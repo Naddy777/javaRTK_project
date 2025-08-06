@@ -32,15 +32,10 @@ public class Product {
             System.out.println("Ошибка! Деньги не могут быть отрицательными!");
         }
     }
-//    @Override
-//    public String toString() {
-//        return "\n" + "Цена продукта " + item + " составляет: " + price + " рублей";
-//        }
 
     @Override
     public String toString() {
-                 return item;
-
+        return item;
     }
 
 }
