@@ -53,10 +53,6 @@ public class App {
                         System.out.println("Деньги не могут быть отрицательным числом! Данные по покупателю " + name + " не занесены!" + "\n");
                     } else {
                         persons[i] = new Person(name, money);
-//                    System.out.println("Покупатель: " + name + ". Сумма денег у покупателя: " + money);
-//                    System.out.println();
-//                    persons[i].setName(name);
-//                    persons[i].setMoney(money);
                         i++;
                     }
                 }
