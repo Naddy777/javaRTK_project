@@ -67,7 +67,7 @@ public class Person {
     public boolean byeDiscountProduct (DiscountProduct discountProduct){
         if (discountProduct.getPrice() <= this.money){
             this.discountProducts.add(discountProduct);
-            this.money -= discountProduct.getPrice();//!!! Проверить!! не вычтет ли два раза
+            this.money -= discountProduct.getPrice();
 
             System.out.println(this.name + " купил(а) в Счастливый час " + discountProduct.getItem() + " по цене " + discountProduct.getPrice()) ;
             return true;
