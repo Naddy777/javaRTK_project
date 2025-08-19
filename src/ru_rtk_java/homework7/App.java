@@ -30,7 +30,9 @@ public class App {
 
         Person[] persons = new Person[10];
         Product[] products = new Product[10];
+        DiscountProduct [] discountProducts = new DiscountProduct [10];
         int hourNow = LocalDateTime.now().getHour();
+
 
         System.out.println("Вводим покупателей через сканер.");
         Scanner scanner = new Scanner(System.in);
@@ -70,6 +72,7 @@ public class App {
                     float price = Float.parseFloat(massivP[1].trim());
                     try{
                         products[j] = new Product(item, price);
+//                        discountProducts[j] = new DiscountProduct(item, price, 0, 0);
                         j++;
                     }catch (IllegalArgumentException e){
                         System.err.println(e.getMessage());//Отработка ошибок
@@ -78,7 +81,21 @@ public class App {
                     System.out.println("Некорректный ввод. Не введена цена продукта ");
                 }
             }
-            System.out.println();
+            Scanner scanner3 = new Scanner(System.in);
+            System.out.println("Хотите провести Черную пятницу? (введите ДА или НЕТ) ");
+            String vibor = scanner3.nextLine();
+            if (vibor.equals("ДА")) {
+                System.out.println("Включена черная пятница! ");
+                boolean pyatnisa = true;
+
+            } else if (vibor.equals("НЕТ")) {
+                System.out.println("Выбрана обычная неделя продаж. без скидок!");
+                boolean pyatnisa = false;
+            }else {
+                System.out.println("Ваш выбор не понятен, скидки применяться не будут!");
+                boolean pyatnisa = false;
+            }
+//            System.out.println(pyatnisa);
             System.out.println("Вводим покупки наших покупателей через сканер.");
             Scanner scanner2 = new Scanner(System.in);
             System.out.print("Введите, что купил покупатель в формате: имя покупателя - продукт: ");
@@ -104,10 +121,26 @@ public class App {
                                         if (products[m] != null) {
                                             if (productName.equals(products[m].getItem())) {
                                                 System.out.println("Продукт " + productName + " есть в наличии.");
-                                                persons[l].buyProduct(products[m]);
-                                                System.out.println("У покупателя " + persons[l].getName() + " осталось " + persons[l].getMoney() + " рублей. " + "\n");
-                                                z = 1;
-                                                break;
+                                                if (vibor.equals("ДА")){
+                                                    Scanner scanner4 = new Scanner(System.in);
+                                                    System.out.println("Введите размер скидки на сегодня (двузначное число): ");
+                                                    int skidka = scanner4.nextInt();
+                                                    Scanner scanner5 = new Scanner(System.in);
+                                                    System.out.println("Введите, сколько часов будет действовать скидка (двузначное число): ");
+                                                    int period = scanner5.nextInt();
+                                                    discountProducts[m] = new DiscountProduct(products[m].getItem(), products[m].getPrice(), skidka, period);
+                                                    discountProducts[m].setPrice(discountProducts[m].getPrice()*(1-discountProducts[m].getSize()/100));
+                                                    System.out.println("Цена старая " + products[m].getPrice() + " и цена новая " + discountProducts[m].getPrice());
+                                                    persons[l].byeDiscountProduct(discountProducts[m]);// !!!!!!!!!!!!! Тут!!
+                                                    System.out.println("У покупателя " + persons[l].getName() + " осталось " + persons[l].getMoney() + " рублей. " + "\n");
+                                                    z = 1;
+                                                    break;
+                                                }else {
+                                                    persons[l].buyProduct(products[m]);// !!!!!!!!!!!!! Тут!!
+                                                    System.out.println("У покупателя " + persons[l].getName() + " осталось " + persons[l].getMoney() + " рублей. " + "\n");
+                                                    z = 1;
+                                                    break;
+                                                }
                                             } else {
 //                                                System.out.println("Продукта " + productName + " нет в наличии. ");
                                             }
@@ -128,11 +161,12 @@ public class App {
                 System.out.print("Введите, что купил следующий покупатель в формате: имя покупателя - продукт. (завершение цикла - END): ");
             }
 
+
         System.out.println("Наши покупатели купили: ");
         int k;
         for(k=0;k<persons.length; k++ ) {
             if (persons[k] != null) {
-                if (persons[k].getProducts().isEmpty()) {
+                if (persons[k].getProducts().isEmpty()&&persons[k].getDiscountProduct().isEmpty()) {
                     System.out.println( "\n"+ persons[k].getName() + " - Ничего не куплено");
                 }else {
                     String a = persons[k].toString();

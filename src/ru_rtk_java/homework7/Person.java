@@ -5,7 +5,7 @@ public class Person {
     private String name;
     private float money;
     private ArrayList<Product> products;
-//    private ArrayList<DiscountProduct> discountProducts;
+    private ArrayList<DiscountProduct> discountProducts;
 
 
     public Person(String name, float money) {
@@ -14,6 +14,7 @@ public class Person {
         this.name = name;
         this.money = money;
         this.products = new ArrayList<>();
+        this.discountProducts = new ArrayList<>();
     }
 
     public String getName() {
@@ -44,9 +45,9 @@ public class Person {
         return products;
     }
 
-//    public ArrayList<DiscountProduct> getDiscountProduct() {
-//        return discountProducts;
-//    }
+    public ArrayList<DiscountProduct> getDiscountProduct() {
+        return discountProducts;
+    }
 
     public void addProduct(Product p) {
         products.add(p);
@@ -63,14 +64,15 @@ public class Person {
             return false;
         }
     }
-    public boolean byeDiscountProduct (DiscountProduct product){
-        if (product.getPrice() <= this.money){
-            this.products.add(product);
-            this.money -= product.getPrice();
-            System.out.println(this.name + " купил(а) " + product.getItem());
+    public boolean byeDiscountProduct (DiscountProduct discountProduct){
+        if (discountProduct.getPrice() <= this.money){
+            this.discountProducts.add(discountProduct);
+            this.money -= discountProduct.getPrice();//!!! Проверить!! не вычтет ли два раза
+
+            System.out.println(this.name + " купил(а) в Счастливый час " + discountProduct.getItem() + " по цене " + discountProduct.getPrice()) ;
             return true;
         }else {
-            System.out.println(this.name + " не может позволить себе " + product.getItem());
+            System.out.println(this.name + " не может позволить себе в Счастливый час " + discountProduct.getItem());
             return false;
         }
     }
@@ -89,7 +91,14 @@ public class Person {
                 result +=p.getItem() + ", ";
             }
             result = result.substring(0,result.length()-2);// Удаляем последнюю запятую. substring - возвращает нов.строку с индекса 0 по длину result минус 2 символа с конца
-        }else {
+        } else if (!discountProducts.isEmpty()){
+            for(DiscountProduct d : discountProducts){
+                result +=d.getItem() + ", ";
+            }
+            result = result.substring(0,result.length()-2);//) {
+
+        }else
+        {
             result += "Ничего не куплено";
         }
 
