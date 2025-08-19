@@ -5,6 +5,8 @@ public class Person {
     private String name;
     private float money;
     private ArrayList<Product> products;
+//    private ArrayList<DiscountProduct> discountProducts;
+
 
     public Person(String name, float money) {
         if (name.length() < 3 || name.isEmpty()) throw new IllegalArgumentException("Имя не может быть пустым или коротким! Данные по покупателю " + name + " не занесены!");
@@ -42,11 +44,26 @@ public class Person {
         return products;
     }
 
+//    public ArrayList<DiscountProduct> getDiscountProduct() {
+//        return discountProducts;
+//    }
+
     public void addProduct(Product p) {
         products.add(p);
     }
 
     public boolean buyProduct (Product product){
+        if (product.getPrice() <= this.money){
+            this.products.add(product);
+            this.money -= product.getPrice();
+            System.out.println(this.name + " купил(а) " + product.getItem());
+            return true;
+        }else {
+            System.out.println(this.name + " не может позволить себе " + product.getItem());
+            return false;
+        }
+    }
+    public boolean byeDiscountProduct (DiscountProduct product){
         if (product.getPrice() <= this.money){
             this.products.add(product);
             this.money -= product.getPrice();

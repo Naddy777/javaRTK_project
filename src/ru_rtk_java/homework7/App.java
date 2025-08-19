@@ -22,6 +22,7 @@ package ru_rtk_java.homework7;
  */
 
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class App {
@@ -29,6 +30,7 @@ public class App {
 
         Person[] persons = new Person[10];
         Product[] products = new Product[10];
+        int hourNow = LocalDateTime.now().getHour();
 
         System.out.println("Вводим покупателей через сканер.");
         Scanner scanner = new Scanner(System.in);
