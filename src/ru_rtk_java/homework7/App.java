@@ -93,8 +93,11 @@ public class App {
                 Scanner scanner5 = new Scanner(System.in);
                 System.out.println("Введите, сколько часов будет действовать скидка: ");
                 int period = scanner5.nextInt();
+                Scanner scanner6 = new Scanner(System.in);
+                System.out.println("Введите, с какого часа включаем скидку : ");
+                int start = scanner6.nextInt();
                 try {
-                    discounts[0] = new Discount(skidka,period);
+                    discounts[0] = new Discount(skidka,start,period);
 //                    System.out.println("Все ок!");
                 }catch (IllegalArgumentException r){
                     System.err.println(r.getMessage());//Отработка ошибок
@@ -137,8 +140,10 @@ public class App {
                                                 System.out.println("Продукт " + productName + " есть в наличии.");
                                                 if (vibor.equals("ДА")){
                                                     discountProducts[m] = new DiscountProduct(products[m].getItem(), products[m].getPrice(), discounts[0] );
-                                                    discountProducts[m].setPrice(discountProducts[m].getPrice()*(1-discounts[0].getSize()/100));
-                                                    System.out.println("Цена старая " + products[m].getPrice() + " и цена новая " + discountProducts[m].getPrice());
+                                                    if (discounts[0].runDiscount()){// если это true
+                                                        discountProducts[m].setPrice(discountProducts[m].getPrice() * (1 - discounts[0].getSize() / 100));
+                                                        System.out.println("Цена старая " + products[m].getPrice() + " и цена новая " + discountProducts[m].getPrice());
+                                                    }
                                                     persons[l].byeDiscountProduct(discountProducts[m]);// !!!!!!!!!!!!! Тут!!
                                                     System.out.println("У покупателя " + persons[l].getName() + " осталось " + persons[l].getMoney() + " рублей. " + "\n");
                                                     z = 1;

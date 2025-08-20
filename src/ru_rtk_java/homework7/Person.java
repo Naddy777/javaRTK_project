@@ -69,10 +69,10 @@ public class Person {
             this.discountProducts.add(discountProduct);
             this.money -= discountProduct.getPrice();
 
-            System.out.println(this.name + " купил(а) в Счастливый час " + discountProduct.getItem() + " по цене " + discountProduct.getPrice()) ;
+            System.out.println(this.name + " купил(а) в Черную пятницу " + discountProduct.getItem() + " по цене " + discountProduct.getPrice()) ;
             return true;
         }else {
-            System.out.println(this.name + " не может позволить себе в Счастливый час " + discountProduct.getItem());
+            System.out.println(this.name + " не может позволить себе в Черную пятницу " + discountProduct.getItem());
             return false;
         }
     }
