@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Discount {
     private float size;// размер скидки
-    private int happyHour; // Счастливые часы: сколько действует скидка
+    private int happyHour; // Счастливые часы: сколько часов действует скидка
     private int startHour; // с какого часа действует скидка
     public Discount(float size, int startHour, int happyHour) {
 

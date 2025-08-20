@@ -19,7 +19,7 @@ public class Product {
         if (item.length() > 1) {
             this.item = item;
         } else {
-            System.out.println("Ошибка! Название продукта не может быть 1 символ!");
+            System.out.println("Ошибка! Название продукта не может быть 1 символ и пустым!");
         }
     }
 

@@ -32,8 +32,7 @@ public class App {
         Product[] products = new Product[10];
         DiscountProduct [] discountProducts = new DiscountProduct [10];
         Discount [] discounts = new Discount [10];
-        int hourNow = LocalDateTime.now().getHour();
-
+//        int hourNow = LocalDateTime.now().getHour();
 
         System.out.println("Вводим покупателей через сканер.");
         Scanner scanner = new Scanner(System.in);
@@ -58,7 +57,6 @@ public class App {
             }
         }
         if(persons[0] != null){
-
             System.out.println();
             System.out.println("Вводим продукты через сканер.");
             Scanner scannerP = new Scanner(System.in);
@@ -87,7 +85,6 @@ public class App {
                 String vibor = scanner3.nextLine();
                 if (vibor.equals("ДА")) {
                     System.out.println("Включена черная пятница! ");
-
                     Scanner scanner4 = new Scanner(System.in);
                     System.out.println("Введите размер скидки на сегодня (двузначное число): ");
                     float skidka = scanner4.nextFloat();
@@ -105,20 +102,15 @@ public class App {
                         vibor = "НЕТ";
 //                    System.out.println("Все не ок, но мы тут!");
                     }
-
                 } else if (vibor.equals("НЕТ")) {
                     System.out.println("Выбрана обычная неделя продаж. без скидок!");
-
                 } else {
                     System.out.println("Ваш выбор не понятен, скидки применяться не будут!");
-
                 }
-//            System.out.println(discounts[0].toString());
                 System.out.println("Вводим покупки наших покупателей через сканер.");
                 Scanner scanner2 = new Scanner(System.in);
                 System.out.print("Введите, что купил покупатель в формате: имя покупателя - продукт: ");
                 while (true) {
-
                     String pokupka = scanner2.nextLine();
                     if (pokupka.equals("END")) {
                         System.out.println("Ввод завершен.");
@@ -140,23 +132,21 @@ public class App {
                                                 if (productName.equals(products[m].getItem())) {
                                                     System.out.println("Продукт " + productName + " есть в наличии.");
                                                     if (vibor.equals("ДА")) {
-                                                        discountProducts[m] = new DiscountProduct(products[m].getItem(), products[m].getPrice(), discounts[0]);
-                                                        if (discounts[0].runDiscount()) {// если это true
+                                                        discountProducts[m] = new DiscountProduct(products[m].getItem(), products[m].getPrice(), discounts[0]);// реализован ввод скидки одного размера на весь день для всех продуктов
+                                                        if (discounts[0].runDiscount()) {// если это true, т.е. счастливый час активен, то цену пересчитываем
                                                             discountProducts[m].setPrice(discountProducts[m].getPrice() * (1 - discounts[0].getSize() / 100));
                                                             System.out.println("Цена старая " + products[m].getPrice() + "; цена новая " + discountProducts[m].getPrice());
                                                         }
-                                                        persons[l].byeDiscountProduct(discountProducts[m]);// !!!!!!!!!!!!! Тут!!
+                                                        persons[l].byeDiscountProduct(discountProducts[m]);// добавляем скидочный продукт в массив скидочных продуктов
                                                         System.out.println("У покупателя " + persons[l].getName() + " осталось " + persons[l].getMoney() + " рублей. " + "\n");
                                                         z = 1;
                                                         break;
                                                     } else {
-                                                        persons[l].buyProduct(products[m]);// !!!!!!!!!!!!! Тут!!
+                                                        persons[l].buyProduct(products[m]);// добавляем  продукт в массив  продуктов без скидок
                                                         System.out.println("У покупателя " + persons[l].getName() + " осталось " + persons[l].getMoney() + " рублей. " + "\n");
                                                         z = 1;
                                                         break;
                                                     }
-                                                } else {
-//                                                System.out.println("Продукта " + productName + " нет в наличии. ");
                                                 }
                                             }
                                         }
@@ -165,8 +155,6 @@ public class App {
                                         }
                                         g = 1;
                                     }
-                                } else {
-//                                System.out.println("Некорректный ввод. Нет покупателя/не указан покупатель!");break;
                                 }
                             }
                             if (g != 1) {
@@ -179,13 +167,11 @@ public class App {
                     System.out.print("Введите, что купил следующий покупатель в формате: имя покупателя - продукт. (завершение цикла - END): ");
                 }
             }
-
-
         System.out.println("Наши покупатели купили: ");
         int k;
         for(k=0;k<persons.length; k++ ) {
             if (persons[k] != null) {
-                if (persons[k].getProducts().isEmpty()&&persons[k].getDiscountProduct().isEmpty()) {
+                if (persons[k].getProducts().isEmpty() && persons[k].getDiscountProduct().isEmpty()) {
                     System.out.println( "\n"+ persons[k].getName() + " - Ничего не куплено");
                 }else {
                     String a = persons[k].toString();
@@ -211,5 +197,8 @@ public class App {
         Борис - Торт
         Павел Андреевич - Торт
         END
+        ДА
+        НЕТ
+
      */
 

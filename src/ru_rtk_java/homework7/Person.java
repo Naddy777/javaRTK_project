@@ -16,7 +16,6 @@ public class Person {
         this.products = new ArrayList<>();
         this.discountProducts = new ArrayList<>();
     }
-
     public String getName() {
         return name;
     }
@@ -49,9 +48,9 @@ public class Person {
         return discountProducts;
     }
 
-    public void addProduct(Product p) {
-        products.add(p);
-    }
+//    public void addProduct(Product p) {
+//        products.add(p);
+//    }
 
     public boolean buyProduct (Product product){
         if (product.getPrice() <= this.money){
@@ -68,7 +67,6 @@ public class Person {
         if (discountProduct.getPrice() <= this.money){
             this.discountProducts.add(discountProduct);
             this.money -= discountProduct.getPrice();
-
             System.out.println(this.name + " купил(а) в Черную пятницу " + discountProduct.getItem() + " по цене " + discountProduct.getPrice()) ;
             return true;
         }else {
@@ -76,12 +74,10 @@ public class Person {
             return false;
         }
     }
-
 //    @Override
 //    public String toString() {
 //            return "\n" + name + " - " + products;
 //    }
-
 
     @Override// Другая версия метода вывода корзины на печать
     public String toString() {
