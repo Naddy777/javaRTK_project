@@ -8,8 +8,8 @@ public class Discount {
 
     public Discount(float size, int happyHour) {
 
-        if (size < 0) throw new IllegalArgumentException("Скидка на продукт не может быть отрицательным числом!");
-        if (size > 100) throw new IllegalArgumentException("Скидка на продукт не может составлять всю его стоимость!");
+        if (size < 0) throw new IllegalArgumentException("Скидка на продукт не может быть отрицательным числом! Черная пятница включена не будет. ");
+        if (size >= 100) throw new IllegalArgumentException("Скидка на продукт не может составлять всю его стоимость! Черная пятница включена не будет. ");
         this.size = size;
         this.happyHour = happyHour;
     }

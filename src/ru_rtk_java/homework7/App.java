@@ -73,7 +73,6 @@ public class App {
                     float price = Float.parseFloat(massivP[1].trim());
                     try{
                         products[j] = new Product(item, price);
-//                        discountProducts[j] = new DiscountProduct(item, price, 0, 0);
                         j++;
                     }catch (IllegalArgumentException e){
                         System.err.println(e.getMessage());//Отработка ошибок
@@ -87,23 +86,30 @@ public class App {
             String vibor = scanner3.nextLine();
             if (vibor.equals("ДА")) {
                 System.out.println("Включена черная пятница! ");
-//                boolean pyatnisa = true;
+
                 Scanner scanner4 = new Scanner(System.in);
                 System.out.println("Введите размер скидки на сегодня (двузначное число): ");
                 float skidka = scanner4.nextFloat();
                 Scanner scanner5 = new Scanner(System.in);
-                System.out.println("Введите, сколько часов будет действовать скидка (двузначное число): ");
+                System.out.println("Введите, сколько часов будет действовать скидка: ");
                 int period = scanner5.nextInt();
-                discounts[0] = new Discount(skidka,period);
+                try {
+                    discounts[0] = new Discount(skidka,period);
+//                    System.out.println("Все ок!");
+                }catch (IllegalArgumentException r){
+                    System.err.println(r.getMessage());//Отработка ошибок
+                    vibor = "НЕТ";
+//                    System.out.println("Все не ок, но мы тут!");
+                }
 
             } else if (vibor.equals("НЕТ")) {
                 System.out.println("Выбрана обычная неделя продаж. без скидок!");
-                boolean pyatnisa = false;
+
             }else {
                 System.out.println("Ваш выбор не понятен, скидки применяться не будут!");
-                boolean pyatnisa = false;
+
             }
-            System.out.println(discounts[0].toString());
+//            System.out.println(discounts[0].toString());
             System.out.println("Вводим покупки наших покупателей через сканер.");
             Scanner scanner2 = new Scanner(System.in);
             System.out.print("Введите, что купил покупатель в формате: имя покупателя - продукт: ");
@@ -130,12 +136,6 @@ public class App {
                                             if (productName.equals(products[m].getItem())) {
                                                 System.out.println("Продукт " + productName + " есть в наличии.");
                                                 if (vibor.equals("ДА")){
-//                                                    Scanner scanner4 = new Scanner(System.in);
-//                                                    System.out.println("Введите размер скидки на сегодня (двузначное число): ");
-//                                                    int skidka = scanner4.nextInt();
-//                                                    Scanner scanner5 = new Scanner(System.in);
-//                                                    System.out.println("Введите, сколько часов будет действовать скидка (двузначное число): ");
-//                                                    int period = scanner5.nextInt();
                                                     discountProducts[m] = new DiscountProduct(products[m].getItem(), products[m].getPrice(), discounts[0] );
                                                     discountProducts[m].setPrice(discountProducts[m].getPrice()*(1-discounts[0].getSize()/100));
                                                     System.out.println("Цена старая " + products[m].getPrice() + " и цена новая " + discountProducts[m].getPrice());
