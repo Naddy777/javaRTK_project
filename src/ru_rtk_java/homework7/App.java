@@ -31,6 +31,7 @@ public class App {
         Person[] persons = new Person[10];
         Product[] products = new Product[10];
         DiscountProduct [] discountProducts = new DiscountProduct [10];
+        Discount [] discounts = new Discount [10];
         int hourNow = LocalDateTime.now().getHour();
 
 
@@ -86,7 +87,14 @@ public class App {
             String vibor = scanner3.nextLine();
             if (vibor.equals("ДА")) {
                 System.out.println("Включена черная пятница! ");
-                boolean pyatnisa = true;
+//                boolean pyatnisa = true;
+                Scanner scanner4 = new Scanner(System.in);
+                System.out.println("Введите размер скидки на сегодня (двузначное число): ");
+                float skidka = scanner4.nextFloat();
+                Scanner scanner5 = new Scanner(System.in);
+                System.out.println("Введите, сколько часов будет действовать скидка (двузначное число): ");
+                int period = scanner5.nextInt();
+                discounts[0] = new Discount(skidka,period);
 
             } else if (vibor.equals("НЕТ")) {
                 System.out.println("Выбрана обычная неделя продаж. без скидок!");
@@ -95,7 +103,7 @@ public class App {
                 System.out.println("Ваш выбор не понятен, скидки применяться не будут!");
                 boolean pyatnisa = false;
             }
-//            System.out.println(pyatnisa);
+            System.out.println(discounts[0].toString());
             System.out.println("Вводим покупки наших покупателей через сканер.");
             Scanner scanner2 = new Scanner(System.in);
             System.out.print("Введите, что купил покупатель в формате: имя покупателя - продукт: ");
@@ -122,14 +130,14 @@ public class App {
                                             if (productName.equals(products[m].getItem())) {
                                                 System.out.println("Продукт " + productName + " есть в наличии.");
                                                 if (vibor.equals("ДА")){
-                                                    Scanner scanner4 = new Scanner(System.in);
-                                                    System.out.println("Введите размер скидки на сегодня (двузначное число): ");
-                                                    int skidka = scanner4.nextInt();
-                                                    Scanner scanner5 = new Scanner(System.in);
-                                                    System.out.println("Введите, сколько часов будет действовать скидка (двузначное число): ");
-                                                    int period = scanner5.nextInt();
-                                                    discountProducts[m] = new DiscountProduct(products[m].getItem(), products[m].getPrice(), skidka, period);
-                                                    discountProducts[m].setPrice(discountProducts[m].getPrice()*(1-discountProducts[m].getSize()/100));
+//                                                    Scanner scanner4 = new Scanner(System.in);
+//                                                    System.out.println("Введите размер скидки на сегодня (двузначное число): ");
+//                                                    int skidka = scanner4.nextInt();
+//                                                    Scanner scanner5 = new Scanner(System.in);
+//                                                    System.out.println("Введите, сколько часов будет действовать скидка (двузначное число): ");
+//                                                    int period = scanner5.nextInt();
+                                                    discountProducts[m] = new DiscountProduct(products[m].getItem(), products[m].getPrice(), discounts[0] );
+                                                    discountProducts[m].setPrice(discountProducts[m].getPrice()*(1-discounts[0].getSize()/100));
                                                     System.out.println("Цена старая " + products[m].getPrice() + " и цена новая " + discountProducts[m].getPrice());
                                                     persons[l].byeDiscountProduct(discountProducts[m]);// !!!!!!!!!!!!! Тут!!
                                                     System.out.println("У покупателя " + persons[l].getName() + " осталось " + persons[l].getMoney() + " рублей. " + "\n");
