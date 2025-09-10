@@ -1,4 +1,4 @@
-package ru_rtk_java.homework8;
+package ru_rtk_java.Chernoviki;
 
 import java.util.ArrayList;
 import java.util.HashSet;
