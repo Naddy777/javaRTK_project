@@ -2,14 +2,13 @@ package ru_rtk_java.homework8;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /*
 Реализовать метод, который на вход принимает ArrayList<T>, а возвращает набор
 уникальных элементов этого массива. Решить, используя коллекции
  */
-public class DZ8_1 {
+public class UnicValues {
 //    @FunctionalInterface
 //    public interface Inter<T>{
 //        T func(T value);
