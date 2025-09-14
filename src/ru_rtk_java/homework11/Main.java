@@ -1,5 +1,6 @@
 package ru_rtk_java.homework11;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -68,10 +69,20 @@ public class Main {
                 .mapToDouble(Cars::getPrice)
                 .average()
                 .orElse(0.0);
-        System.out.println("Средняя стоимость автомобилей модели" + model2 +" "+ modelPriceEvereg2);
+        System.out.println("Средняя стоимость автомобилей модели " + model2 + " " + modelPriceEvereg2);
+
+        FileWriter avto = new FileWriter("C:\\Users\\volll\\IdeaProjects\\javaRTK_project\\src\\avto.txt");
+        avto.write("Автомобили в базе: " + "\n");
+        cars.forEach(car -> {
+            try{avto.write(car.toString() + "\n");
+
+            }catch (IOException ex){
+
+            }
+        });
+        avto.close();
 
 
-        System.out.println("Цвет автомобиля с минимальной стоимостью: " + colorMinPrice);
 
 
 
